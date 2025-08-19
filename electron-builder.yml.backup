@@ -1,5 +1,5 @@
-appId: com.application.d3ploy
-productName: D3ploy
+appId: com.stackblitz.bolt.diy
+productName: Bolt Local
 directories:
   buildResources: build
   output: dist
@@ -11,14 +11,12 @@ files:
   - electron-update.yml
 extraMetadata:
   main: build/electron/main/index.mjs
-  description: "D3ploy - Self-hosted AI no code fullstack application builder"
-  author: "Garrett Mersman"
-  copyright: "Copyright © 2025 D3PLOY"
 asarUnpack:
   - resources/**
   - build/client/**/*
   - build/server/**/*
   - electron-update.yml
+
 mac:
   icon: assets/icons/icon.icns
   target:
@@ -30,11 +28,13 @@ mac:
   entitlements: "assets/entitlements.mac.plist"
   entitlementsInherit: "assets/entitlements.mac.plist"
   gatekeeperAssess: false
+
 win:
   icon: assets/icons/icon.ico
   target:
     - nsis
   artifactName: ${name}-${version}-${os}-${arch}.${ext}
+
 linux:
   icon: assets/icons/icon.png
   target:
@@ -42,19 +42,23 @@ linux:
     - deb
   artifactName: ${name}-${version}-${os}-${arch}.${ext}
   category: Development
+
 nsis:
   oneClick: false
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
   createStartMenuShortcut: true
   shortcutName: ${productName}
-  artifactName: ${name}-Setup-${version}.${ext}
+  artifactName: ${name}-${version}-${os}-${arch}-setup.${ext}
+
 npmRebuild: false
+
 publish:
   provider: github
-  owner: 7figurefortune
-  repo: d3ploy
+  owner: Derek-X-Wang
+  repo: bolt.local
   private: true
   releaseType: release
+
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/

@@ -236,7 +236,9 @@ export const ChatBox: React.FC<ChatBoxProps> = (props) => {
             minHeight: props.TEXTAREA_MIN_HEIGHT,
             maxHeight: props.TEXTAREA_MAX_HEIGHT,
           }}
-          placeholder={props.chatMode === 'build' ? 'What can we help you deploy today?' : 'What would you like to know?'}
+          placeholder={
+            props.chatMode === 'build' ? 'What can we help you deploy today?' : 'What would you like to know?'
+          }
           translate="no"
         />
         <ClientOnly>
