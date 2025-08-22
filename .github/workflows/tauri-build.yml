@@ -23,6 +23,9 @@ jobs:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@stable
 
+      - name: Install Tauri CLI
+        run: cargo install tauri-cli
+
       - name: Install frontend dependencies
         run: npm install --legacy-peer-deps
         working-directory: .
