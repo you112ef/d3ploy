@@ -24,10 +24,10 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install Tauri CLI
-        run: |
-          cargo install tauri-cli --force
-          echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        run: cargo install tauri-cli --force
 
+      - name: Add Cargo bin to PATH
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
       - name: Install frontend dependencies
         run: npm install --legacy-peer-deps
