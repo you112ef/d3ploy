@@ -39,6 +39,9 @@ jobs:
         run: npm run tauri
         working-directory: .
 
+      - name: Build Tauri app
+        run: npm run tauri
+
       - name: Upload build artifacts
         if: success()
         uses: actions/upload-artifact@v4
