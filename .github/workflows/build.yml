@@ -1,0 +1,2 @@
+- name: Install Tauri JS CLI
+  run: npm install -g @tauri-apps/cli
