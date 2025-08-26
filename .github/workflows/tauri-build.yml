@@ -27,8 +27,8 @@ jobs:
           override: true
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
 
+        run: npm ci --legacy-peers
 
       - name: Build frontend
         run: npm run build
@@ -41,3 +41,4 @@ jobs:
         with:
           name: tauri-build
           path: src-tauri/target/release/bundle/
+
