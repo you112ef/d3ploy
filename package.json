@@ -6,10 +6,7 @@
   "sideEffects": false,
   "type": "module",
   "version": "1.0.0",
-  "author": {
-    "name": "Garrett Mersman",
-    "email": "thexleadxpros@gmail.com"
-  },
+  "author": "Garrett Mersman <thexleadxpros@gmail.com>",
   "scripts": {
     "deploy": "npm run build && wrangler pages deploy",
     "tauri": "tauri build",
