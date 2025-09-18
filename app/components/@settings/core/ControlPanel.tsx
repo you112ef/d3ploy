@@ -310,6 +310,47 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
                             </TabTile>
                           </div>
                         ))}
+                        {/* Quick Connect shortcuts */}
+                        <div className="col-span-1 sm:col-span-2 lg:col-span-4 mt-2">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button
+                              onClick={() => {
+                                setActiveTab('connection');
+                                setTimeout(() => {
+                                  window.dispatchEvent(new CustomEvent('focus-connection-provider', { detail: { provider: 'github' } }));
+                                }, 50);
+                              }}
+                              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive/70 bg-bolt-elements-bg-depth-1"
+                            >
+                              <span className="i-ph:github-logo w-4 h-4" />
+                              <span className="text-sm">Quick Connect: GitHub</span>
+                            </button>
+                            <button
+                              onClick={() => {
+                                setActiveTab('connection');
+                                setTimeout(() => {
+                                  window.dispatchEvent(new CustomEvent('focus-connection-provider', { detail: { provider: 'netlify' } }));
+                                }, 50);
+                              }}
+                              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive/70 bg-bolt-elements-bg-depth-1"
+                            >
+                              <span className="i-ph:cloud w-4 h-4" />
+                              <span className="text-sm">Quick Connect: Netlify</span>
+                            </button>
+                            <button
+                              onClick={() => {
+                                setActiveTab('connection');
+                                setTimeout(() => {
+                                  window.dispatchEvent(new CustomEvent('focus-connection-provider', { detail: { provider: 'vercel' } }));
+                                }, 50);
+                              }}
+                              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive/70 bg-bolt-elements-bg-depth-1"
+                            >
+                              <span className="i-ph:triangle w-4 h-4" />
+                              <span className="text-sm">Quick Connect: Vercel</span>
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>

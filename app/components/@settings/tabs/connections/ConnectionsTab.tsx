@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import { classNames } from '~/utils/classNames';
 import ConnectionDiagnostics from './ConnectionDiagnostics';
 import { Button } from '~/components/ui/Button';
@@ -22,6 +22,24 @@ const LoadingFallback = () => (
 export default function ConnectionsTab() {
   const [isEnvVarsExpanded, setIsEnvVarsExpanded] = useState(false);
   const [showDiagnostics, setShowDiagnostics] = useState(false);
+  const githubRef = useRef<HTMLDivElement | null>(null);
+  const netlifyRef = useRef<HTMLDivElement | null>(null);
+  const vercelRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      try {
+        const detail = (e as CustomEvent).detail as { provider?: string };
+        const id = (detail?.provider || '').toLowerCase();
+        const el = id === 'github' ? githubRef.current : id === 'netlify' ? netlifyRef.current : id === 'vercel' ? vercelRef.current : null;
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } catch {}
+    };
+    window.addEventListener('focus-connection-provider', handler as EventListener);
+    return () => window.removeEventListener('focus-connection-provider', handler as EventListener);
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -150,15 +168,21 @@ export default function ConnectionsTab() {
       </motion.div>
 
       <div className="grid grid-cols-1 gap-6">
-        <Suspense fallback={<LoadingFallback />}>
-          <GitHubConnection />
-        </Suspense>
-        <Suspense fallback={<LoadingFallback />}>
-          <NetlifyConnection />
-        </Suspense>
-        <Suspense fallback={<LoadingFallback />}>
-          <VercelConnection />
-        </Suspense>
+        <div ref={githubRef}>
+          <Suspense fallback={<LoadingFallback />}>
+            <GitHubConnection />
+          </Suspense>
+        </div>
+        <div ref={netlifyRef}>
+          <Suspense fallback={<LoadingFallback />}>
+            <NetlifyConnection />
+          </Suspense>
+        </div>
+        <div ref={vercelRef}>
+          <Suspense fallback={<LoadingFallback />}>
+            <VercelConnection />
+          </Suspense>
+        </div>
       </div>
 
       {/* Additional help text */}
