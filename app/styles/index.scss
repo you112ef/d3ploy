@@ -71,3 +71,19 @@ body {
   // Firefox support for inverted colors
   scrollbar-color: color-mix(in srgb, var(--bolt-elements-textPrimary), transparent 50%) transparent;
 }
+
+/* Global mobile scaling */
+@media (max-width: 640px) {
+  html { font-size: 14px; }
+  body { -webkit-text-size-adjust: 100%; }
+
+  img, svg, video, canvas { max-width: 100%; height: auto; }
+
+  button, .btn, [role="button"] {
+    font-size: 0.9rem;
+    line-height: 1.2;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .container, .content, .panel { padding-left: 0.75rem; padding-right: 0.75rem; }
+}

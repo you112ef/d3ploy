@@ -253,3 +253,15 @@
   --bolt-elements-terminal-color-brightCyan: var(--bolt-terminal-brightCyan);
   --bolt-elements-terminal-color-brightWhite: var(--bolt-terminal-brightWhite);
 }
+
+/* Mobile overrides */
+@media (max-width: 640px) {
+  :root {
+    --header-height: 48px;
+    --chat-max-width: 100vw;
+    --chat-min-width: 0px;
+    --workbench-width: 100vw;
+    --workbench-inner-width: 100vw;
+    --workbench-left: 0px;
+  }
+}

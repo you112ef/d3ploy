@@ -18,6 +18,12 @@
   opacity: 1;
 }
 
+@media (max-width: 640px) {
+  :root {
+    --chat-min-width: 0px;
+  }
+}
+
 .PromptEffectContainer {
   --prompt-container-offset: 50px;
   --prompt-line-stroke-width: 1px;

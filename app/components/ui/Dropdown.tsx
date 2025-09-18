@@ -41,7 +41,7 @@ export const Dropdown = ({ trigger, children, align = 'end', sideOffset = 5 }: D
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           className={classNames(
-            'min-w-[220px] rounded-lg p-2',
+            'min-w-[220px] rounded-lg p-2 max-w-[95vw]',
             'bg-bolt-elements-background-depth-2',
             'border border-bolt-elements-borderColor',
             'shadow-lg',

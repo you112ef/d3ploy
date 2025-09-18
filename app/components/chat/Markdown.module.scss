@@ -169,3 +169,11 @@ $code-font-size: 13px;
     }
   }
 }
+
+@media (max-width: 640px) {
+  .MarkdownContent {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    img, pre, code { max-width: 100%; }
+  }
+}
