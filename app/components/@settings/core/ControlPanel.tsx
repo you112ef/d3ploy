@@ -213,7 +213,7 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
           >
             <div
               className={classNames(
-                'w-[1200px] h-[90vh]',
+                'w-[1200px] h-[90vh] max-w-[95vw] sm:max-w-[90vw]',
                 'bg-bolt-elements-background-depth-1',
                 'rounded-2xl shadow-2xl',
                 'border border-bolt-elements-borderColor',
@@ -228,7 +228,7 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
               </div>
               <div className="relative z-10 flex flex-col h-full">
                 {/* Header */}
-                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
                   <div className="flex items-center space-x-4">
                     {(activeTab || showTabManagement) && (
                       <button
@@ -245,7 +245,7 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
 
                   <div className="flex items-center gap-6">
                     {/* Avatar and Dropdown */}
-                    <div className="pl-6">
+                    <div className="pl-4 sm:pl-6">
                       <AvatarDropdown onSelectTab={handleTabClick} />
                     </div>
 
@@ -271,6 +271,7 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
                     'dark:scrollbar-thumb-[#333333] dark:hover:scrollbar-thumb-[#444444]',
                     'will-change-scroll',
                     'touch-auto',
+                    'max-w-[95vw]'
                   )}
                 >
                   <div
@@ -282,7 +283,7 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
                     {activeTab ? (
                       getTabComponent(activeTab)
                     ) : (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 relative">
                         {visibleTabs.map((tab, index) => (
                           <div
                             key={tab.id}
@@ -309,6 +310,47 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
                             </TabTile>
                           </div>
                         ))}
+                        {/* Quick Connect shortcuts */}
+                        <div className="col-span-1 sm:col-span-2 lg:col-span-4 mt-2">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <button
+                              onClick={() => {
+                                setActiveTab('connection');
+                                setTimeout(() => {
+                                  window.dispatchEvent(new CustomEvent('focus-connection-provider', { detail: { provider: 'github' } }));
+                                }, 50);
+                              }}
+                              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive/70 bg-bolt-elements-bg-depth-1"
+                            >
+                              <span className="i-ph:github-logo w-4 h-4" />
+                              <span className="text-sm">Quick Connect: GitHub</span>
+                            </button>
+                            <button
+                              onClick={() => {
+                                setActiveTab('connection');
+                                setTimeout(() => {
+                                  window.dispatchEvent(new CustomEvent('focus-connection-provider', { detail: { provider: 'netlify' } }));
+                                }, 50);
+                              }}
+                              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive/70 bg-bolt-elements-bg-depth-1"
+                            >
+                              <span className="i-ph:cloud w-4 h-4" />
+                              <span className="text-sm">Quick Connect: Netlify</span>
+                            </button>
+                            <button
+                              onClick={() => {
+                                setActiveTab('connection');
+                                setTimeout(() => {
+                                  window.dispatchEvent(new CustomEvent('focus-connection-provider', { detail: { provider: 'vercel' } }));
+                                }, 50);
+                              }}
+                              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive/70 bg-bolt-elements-bg-depth-1"
+                            >
+                              <span className="i-ph:triangle w-4 h-4" />
+                              <span className="text-sm">Quick Connect: Vercel</span>
+                            </button>
+                          </div>
+                        </div>
                       </div>
                     )}
                   </div>
